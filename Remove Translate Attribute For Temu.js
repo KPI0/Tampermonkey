@@ -8,6 +8,7 @@
 // @author              KPI0
 // @match               https://www.temu.com/*
 // @grant               none
+// @license             MIT
 // ==/UserScript==
 
 (function() {
