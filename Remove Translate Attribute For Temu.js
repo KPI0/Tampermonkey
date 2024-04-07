@@ -7,6 +7,7 @@
 // @description:zh-cn   Temu购物平台限制了网页翻译，通过此脚本可去除限制
 // @author              KPI0
 // @match               https://www.temu.com/*
+// @icon                https://www.temu.com/favicon.ico
 // @grant               none
 // @license             MIT
 // @updateURL           https://raw.githubusercontent.com/KPI0/Tampermonkey/main/Remove%20Translate%20Attribute%20For%20Temu.js
