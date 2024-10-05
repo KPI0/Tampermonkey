@@ -2,7 +2,7 @@
 // @name                Convert Text to Hyperlink
 // @name:zh-CN          文本识别为超链接
 // @namespace           https://github.com/KPI0/tampermonkey
-// @version             1.0
+// @version             1.1
 // @description         Convert URLs in text nodes to hyperlinks using regular expressions
 // @description:zh-cn   通过正则表达式将文本中的链接转换为超链接
 // @author              KPI0
