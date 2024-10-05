@@ -2,7 +2,7 @@
 // @name                Convert Text to Hyperlink
 // @name:zh-CN          文本识别为超链接
 // @namespace           https://github.com/KPI0/tampermonkey
-// @version             1.4
+// @version             1.5
 // @description         Convert URLs in text nodes to hyperlinks using regular expressions
 // @description:zh-cn   通过正则表达式将文本中的链接转换为超链接
 // @author              KPI0
@@ -19,22 +19,6 @@
 
     // Regular expression to match URLs starting with http or https
     const urlRegex = /(http:\/\/[^\s]+|https:\/\/[^\s]+)/g;
-
-    // Get the recognized count from local storage
-    function getRecognitionCount() {
-        return parseInt(localStorage.getItem('recognition_count') || '0', 10);
-    }
-
-    // Set the recognized count in local storage
-    function setRecognitionCount(count) {
-        localStorage.setItem('recognition_count', count);
-    }
-
-    // Increment the recognized count and save it to local storage
-    function incrementRecognitionCount() {
-        const count = getRecognitionCount() + 1;
-        setRecognitionCount(count);
-    }
 
     function convertTextLinksToHyperlinks(node) {
         if (node.nodeType === Node.TEXT_NODE) {
@@ -69,9 +53,6 @@
                 }
 
                 node.parentNode.replaceChild(span, node);
-
-                // Increment recognition count once a hyperlink is created
-                incrementRecognitionCount();
             }
         } else if (node.nodeType === Node.ELEMENT_NODE) {
             // Skip certain tags that should not contain links or be processed
@@ -85,16 +66,6 @@
         }
     }
 
-    // Register a menu command to show the recognition count
-    function registerMenuCommand() {
-        GM_registerMenuCommand('👀 Recognized: ' + getRecognitionCount() + ' times', () => {
-            setRecognitionCount(0);
-            alert('Recognition count has been reset.');
-            // Update the menu item after reset
-            registerMenuCommand();
-        });
-    }
-
     // Execute after the page has fully loaded
     window.addEventListener('load', function () {
         const mainContentSelectors = ['#main', '.content', '.article', '#content', '.post', '.entry']; // Common main content containers
@@ -104,7 +75,6 @@
                 convertTextLinksToHyperlinks(container);
             }
         });
-        registerMenuCommand();
     });
 
 })();
